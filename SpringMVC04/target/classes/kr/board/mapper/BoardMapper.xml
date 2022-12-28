@@ -10,24 +10,40 @@
 	</select>
 
 	<insert id="boardInsert" parameterType="kr.board.entity.Board">
-		insert into myboard(memID,title,content,writer)
+		insert into
+		myboard(memID,title,content,writer)
 		values(#{memID},#{title},#{content},#{writer});
 	</insert>
 
 
 	<select id="boardContent" resultType="kr.board.entity.Board">
-		select * from myboard where idx=#{idx}
+		select * from myboard where
+		idx=#{idx}
 	</select>
 
 	<delete id="boardDelete" parameterType="int">
-		delete from myboard where idx=#{idx}
+		delete from myboard where
+		idx=#{idx}
 	</delete>
 
 	<update id="boardUpdate" parameterType="kr.board.entity.Board">
-		update myboard set title=#{title}, content=#{content}
+		update myboard set
+		title=#{title}, content=#{content}
 		where idx=#{idx}
 	</update>
 
+	<select id="getListPaging" resultType="kr.board.entity.Board">
+
+		select * from (
+		select idx, title, content, writer
+		from myboard
+		<if test="keyword != null">
+			where title like concat('%',#{keyword},'%' )
+		</if>
+		order by idx desc) as T1
+		limit #{skip},#{amount}
+
+	</select>
 
 
 </mapper>

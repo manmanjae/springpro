@@ -35,3 +35,9 @@ create table mem_tbl(
 delete from mem_tbl;
 
 select * from mem_tbl;
+
+		select idx,memID,title,content,writer from myboard 
+	    where title like '%service%'
+	    order by idx desc 
+	    limit 10, 10;
+	    

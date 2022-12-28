@@ -207,10 +207,12 @@ var csrfTokenValue = "${_csrf.token}";
 <body>
 
 	<div class="container">
-		<jsp:include page="../common/header.jsp" />
+		<jsp:include page="../common/header2.jsp" />
 		<h2>회원 게시판</h2>
 		<div class="panel panel-default">
 			<div class="panel-heading">BOARD</div>
+			<input type="text" name="keyword" value="${pageMaker.cri.keyword }">
+			<button>Search</button>
 			<div class="panel-body" id="view">LIST</div>
 			<div class="panel-body" id="wfrom" style="display: none;">
 				<form id="frm">
